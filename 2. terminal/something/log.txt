@@ -1,0 +1,10 @@
+Timestamp      Category   Message
+1609459200     INFO       Booting up system
+1609459205     INFO       Booting up critical service: Network
+1609459210     INFO       System booted successfully
+1609459220     INFO       User admin requested access for configuration files
+1609459230     ERROR      User guest attempted to access protected resource without proper credentials
+1609459250     INFO       System health check status: Passed
+1609459260     ERROR      Failed to load security service
+1609459270     INFO       User admin logged out
+

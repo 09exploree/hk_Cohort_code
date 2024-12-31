@@ -1,0 +1,1 @@
+setTimeout(()=> window.alert("Hellow"),2000);

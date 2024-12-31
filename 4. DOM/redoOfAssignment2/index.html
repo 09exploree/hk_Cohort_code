@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <script>
+        async function calculateSInterest() {
+            const p = document.getElementById("firstInput").value;
+            const r = document.getElementById("secondInput").value;
+            const t = document.getElementById("thirdInput").value;
+
+            try {
+                const response = await fetch(`http://localhost:3000/simple-intrest?principle=${p}&rate=${r}&time=${t}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const ans = await response.text();
+                document.getElementById("simpleIntrest").innerHTML = `Simple Interest: ${ans}`;
+            } catch (error) {
+                console.error("Error fetching simple interest:", error);
+                document.getElementById("simpleIntrest").innerHTML = "An error occurred. Please try again.";
+            }
+        }
+    </script>
+<body>
+    <input id="firstInput" type="text" placeholder="Principle"> <br><br>
+    <input id="secondInput" type="text" placeholder="Rate"> <br><br>
+    <input id="thirdInput" type="text" placeholder="Time"> <br><br>
+    <button onclick="calculateSInterest()">Calculate</button> <br><br>
+    <div id="simpleIntrest"></div>
+</body>
+</html>

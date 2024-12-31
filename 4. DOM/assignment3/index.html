@@ -1,0 +1,22 @@
+<html >
+    <script>
+        async function populateDiv(){
+          
+            const a=document.getElementById("firstNumber").value;
+            const b=document.getElementById("secondNumber").value;
+      
+            const response=await fetch("http://localhost:3000?a="+a+"&b="+b)
+            const ans=await response.text();
+            document.getelementById("finalSum").innerHTML=ans; 
+        }
+        
+        
+    </script>
+<body>
+
+        <input oninput="populateDiv()" id="firstNumber" type="text" placeholder="first number"> <br></br>
+        <input oninput="populateDiv()" id="secondNumber" type="text" placeholder="second number"> <br></br>
+        <!-- <button onclick="populateDiv()">Calculate Sum </button> <br></br> -->
+        <div id="finalSum"></div>
+</body>
+</html>

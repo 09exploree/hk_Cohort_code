@@ -1,0 +1,79 @@
+<html>
+
+
+<body>
+    
+    <input id="title" type="text" placeholder="title"> <br></br>
+    <input id="description" type="text" placeholder="description"> <br></br>
+    <button onclick="addTodo()">Add Todo</button> <br></br>
+    <div id="container"> </div> <br></br> 
+         
+</body>
+<script>
+    
+let globalId=1
+function markAsDone(todoId){
+    const parent=document.getElementById(todoId)
+    parent.children[2].innerHTML = "Done!";
+
+}    
+function createChild(title,description,id){
+    const child=document.createElement("div")
+
+    const firstGrandChild=document.createElement("div")
+    firstGrandChild.innerHTML=title
+
+    const secondGrandChild=document.createElement("div")
+    secondGrandChild.innerHTML=description
+
+    const thirdGrandChild=document.createElement("button")
+    thirdGrandChild.innerHTML="Mark As Done!"
+    thirdGrandChild.setAttribute("onclick",`markAsDone(${id})`)
+
+    child.appendChild(firstGrandChild)
+    child.appendChild(secondGrandChild)
+    child.appendChild(thirdGrandChild)
+
+    child.setAttribute("id",id)
+    return child; 
+
+}
+   
+    function addTodo(){
+    const title=document.getElementById("title").value
+    const description=document.getElementById("description").value
+    const parent=document.getElementById("container");
+ 
+    parent.appendChild(createChild(title,description,globalId++) )
+   }
+// state will always be an array
+// every element of state would have a little description and id
+
+
+   function updateDomAccordingToState(state){
+    const parent=document.getElementById("container")
+    parent.innerHTML=""
+    for(let i=0 ; i<state.length ; i++){
+        const child = createChild(state[i].title,state[i].description,state[i].id)
+        parent.appendChild(child)
+    }
+   }
+   updateDomAccordingToState([
+    {title:"go to gym",
+        description:"go to gym from 5-7",
+        id:1
+    },
+    {
+        title:"go to gym",
+        description:"go to gym from 7-9",
+        id:2
+    }
+   ])
+   window.setInterval( async function(){
+    const res =await fetch("")
+    const json=await res.json();
+    updateDomAccordingToState(json);
+   },5000)
+</script>
+
+</html>
